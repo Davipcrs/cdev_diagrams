@@ -15,10 +15,10 @@ Widget nodeContainer({
       DraggableContainer(
           initPosition: const Offset(100, 100),
           onMove: (val) => data.position = val,
+          // Handle out of bounds
           childWidget: InkWell(
             onTap: () {
               // Read Offset of the widget and pass to the Data variable.
-              print(data.position.dx);
               ref.read(selectNodeProvider.notifier).state = data.nodeId!;
               ref.read(selectNodeDataProvider.notifier).state = data;
             },

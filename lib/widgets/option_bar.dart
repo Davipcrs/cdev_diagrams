@@ -3,21 +3,30 @@
 
 import 'package:flutter/material.dart';
 
-Widget optionBar() {
-  return ConstrainedBox(
-    constraints: const BoxConstraints(maxWidth: 300),
-    child: Column(
-      children: [
-        OutlinedButton(
-          onPressed: () {},
-          child: Text("Add Widget"),
-        ),
-        OutlinedButton(onPressed: () {}, child: Text("Create Node Connection")),
-      ],
-    ),
-  );
-}
+class OptionBar extends StatelessWidget {
+  const OptionBar({super.key});
 
-Dialog insertDataDialog() {
-  return Dialog();
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 300, minWidth: 300),
+      child: Container(
+        // Creating Elevation
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              OutlinedButton(
+                onPressed: () {},
+                child: Text("Add Widget"),
+              ),
+              OutlinedButton(
+                  onPressed: () {}, child: Text("Create Node Connection")),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
