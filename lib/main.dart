@@ -19,6 +19,8 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   @override
   void initState() {
+    super.initState();
+
     ref.read(nodeList.notifier).state.add(nodeContainer(
         lockVariable: false,
         data: NodeData(
@@ -37,7 +39,6 @@ class _MyAppState extends ConsumerState<MyApp> {
             nodeId: 2, title: "adawd", color: Colors.blue, desc: "das"),
         ref: ref,
         context: context));
-    super.initState();
   }
 
   // This widget is the root of your application.

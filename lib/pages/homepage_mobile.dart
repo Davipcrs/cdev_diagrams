@@ -12,9 +12,18 @@ class HomepageMobile extends ConsumerStatefulWidget {
 
 class _HomepageMobileState extends ConsumerState<HomepageMobile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  dynamic widgetList;
+
+  @override
+  didChangeDependencies() {
+    super.didChangeDependencies();
+    widgetList = ref.watch(nodeList);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<Widget> widgetList = ref.watch(nodeList);
+    ref.watch(nodeCounterProvider);
     return Scaffold(
       key: _scaffoldKey,
       drawer: OptionBar(),
