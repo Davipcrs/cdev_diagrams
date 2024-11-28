@@ -1,6 +1,7 @@
 // Add widgets
 // https://chatgpt.com/g/g-cZPwvslfA-flutter/c/6732d832-2d24-800b-b460-ba6b9e4ead7c
 
+import 'package:cdev_diagrams/controller/node_connections_controller.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/controller/selected_node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
@@ -68,8 +69,16 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                     child: Text("New Node"),
                   ),
                   OutlinedButton(
-                    onPressed: () {},
-                    child: Text("New Line"),
+                    onPressed: () {
+                      setState(() {
+                        titleController.text = '';
+                        descController.text = '';
+                        auxiliarColor = Colors.blue;
+                        ref.invalidate(selectNodeDataProvider);
+                        ref.invalidate(isNodeSelected);
+                      });
+                    },
+                    child: Text("Clear Selection"),
                   ),
                 ],
               ),
@@ -112,19 +121,20 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                     onChanged: (value) =>
                         ref.read(nodeGlobalLockProvider.notifier).state = value,
                   ),
-                  OutlinedButton(
-                    onPressed: () {
-                      setState(() {
-                        titleController.text = '';
-                        descController.text = '';
-                        auxiliarColor = Colors.blue;
-                        ref.invalidate(selectNodeDataProvider);
-                      });
-                    },
-                    child: Text("Clear Selection"),
-                  ),
                 ],
               ),
+              Row(
+                children: [
+                  Text("Line Mode:"),
+                  Switch.adaptive(
+                      value: ref.watch(nodeConnectionsIsActive),
+                      onChanged: ref.watch(isNodeSelected)
+                          ? (value) => ref
+                              .read(nodeConnectionsIsActive.notifier)
+                              .state = value
+                          : null),
+                ],
+              )
               // Implement this list view of all widgets (Nodes and Lines)
               //Container(child: ListView.builder(itemBuilder: itemBuilder))
             ],

@@ -1,3 +1,4 @@
+import 'package:cdev_diagrams/controller/node_connections_controller.dart';
 import 'package:cdev_diagrams/controller/selected_node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,17 @@ Widget nodeContainer({
           // Handle out of bounds
           childWidget: InkWell(
             onTap: () {
+              if (ref.watch(nodeConnectionsIsActive)) {
+                // start = selectedNodeDataProvider;
+                // end = data;
+                return;
+              }
               // Read Offset of the widget and pass to the Data variable.
               ref.read(selectNodeProvider.notifier).state = data.nodeId!;
               ref.read(selectNodeDataProvider.notifier).state = data;
+              ref.read(isNodeSelected.notifier).state = true;
+
+              // Compare the nodeConnectionsStart and End to draw the line.
             },
             child: Container(
               width: 100,

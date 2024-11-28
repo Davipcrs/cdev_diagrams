@@ -180,10 +180,10 @@ packages:
     dependency: "direct main"
     description:
       name: mini_utils
-      sha256: "1e90877d51dcb7e68357040204fe762fb56733a19416d909c6feae5457c38b0d"
+      sha256: "0e91b29529d5ea5f4acc074b3038b71c3beee581418cb06a2ee708ce3b079694"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.5-r4"
+    version: "0.0.6-r1"
   path:
     dependency: transitive
     description:
