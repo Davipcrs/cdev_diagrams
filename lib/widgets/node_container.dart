@@ -15,13 +15,21 @@ Widget nodeContainer({
     children: [
       DraggableContainer(
           initPosition: const Offset(100, 100),
-          onMove: (val) => data.position = val,
+          onMove: (val) {
+            data.position = val;
+          },
           // Handle out of bounds
           childWidget: InkWell(
             onTap: () {
               if (ref.watch(nodeConnectionsIsActive)) {
-                // start = selectedNodeDataProvider;
-                // end = data;
+                // DESIGN THIS BETTER!!!
+                // Create a fuction that is responsible for this...
+                ref.read(nodeConnectionStart.notifier).state =
+                    ref.watch(selectNodeDataProvider);
+                ref.read(nodeConnectionEnd.notifier).state = data;
+
+                ref.read(nodeConnectionsList.notifier).state.add(Tuple2(
+                    ref.watch(selectNodeDataProvider).position, data.position));
                 return;
               }
               // Read Offset of the widget and pass to the Data variable.

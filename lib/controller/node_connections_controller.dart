@@ -1,3 +1,4 @@
+import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,11 @@ final nodeConnectionEnd = StateProvider((_) => NodeData());
 final nodeConnectionsList = StateProvider((_) {
   List<Tuple2<Offset, Offset>> connectionList =
       List<Tuple2<Offset, Offset>>.empty(growable: true);
+  return connectionList;
+});
+final nodeConnectionsObjectList = StateProvider((_) {
+  List<NodeConnections> connectionList =
+      List<NodeConnections>.empty(growable: true);
   return connectionList;
 });
 final nodeConnectionsIsActive = StateProvider((_) => false);
