@@ -42,4 +42,10 @@ class NodeData {
       },
     };
   }
+
+  createNodeData() {
+    // return NodeData()
+  }
+  updateNodeData() {}
+  deleteNodeData() {}
 }
