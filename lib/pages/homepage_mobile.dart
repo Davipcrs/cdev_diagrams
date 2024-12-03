@@ -26,7 +26,7 @@ class _HomepageMobileState extends ConsumerState<HomepageMobile> {
     ref.watch(nodeCounterProvider);
     return Scaffold(
       key: _scaffoldKey,
-      drawer: OptionBar(),
+      drawer: const OptionBar(),
       body: Stack(
         children: [
           IconButton(

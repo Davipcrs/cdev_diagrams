@@ -66,7 +66,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                                 context: context),
                           );
                     },
-                    child: Text("New Node"),
+                    child: const Text("New Node"),
                   ),
                   OutlinedButton(
                     onPressed: () {
@@ -78,7 +78,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                         ref.invalidate(isNodeSelected);
                       });
                     },
-                    child: Text("Clear Selection"),
+                    child: const Text("Clear Selection"),
                   ),
                 ],
               ),
@@ -91,7 +91,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
+                  constraints: const BoxConstraints(
                     maxWidth: 250,
                     maxHeight: 40,
                   ),
@@ -115,7 +115,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
               ),
               Row(
                 children: [
-                  Text("Lock: "),
+                  const Text("Lock: "),
                   Switch.adaptive(
                     value: ref.watch(nodeGlobalLockProvider),
                     onChanged: (value) =>
@@ -125,7 +125,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
               ),
               Row(
                 children: [
-                  Text("Line Mode:"),
+                  const Text("Line Mode:"),
                   Switch.adaptive(
                       value: ref.watch(nodeConnectionsIsActive),
                       onChanged: ref.watch(isNodeSelected)

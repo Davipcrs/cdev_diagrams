@@ -26,7 +26,7 @@ class _HomepageDesktopState extends ConsumerState<HomepageDesktop> {
     return Scaffold(
       body: Row(
         children: [
-          OptionBar(),
+          const OptionBar(),
           SizedBox(
             width: MediaQuery.sizeOf(context).width - 300,
             child: Stack(

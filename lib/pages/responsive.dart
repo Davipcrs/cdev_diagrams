@@ -11,7 +11,7 @@ class Responsive extends ConsumerWidget {
     double width = 0;
     width = MediaQuery.sizeOf(context).width;
     if (width > 600) {
-      return HomepageDesktop();
+      return const HomepageDesktop();
     } else {
       return const HomepageMobile();
     }

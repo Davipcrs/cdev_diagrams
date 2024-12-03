@@ -48,4 +48,6 @@ class NodeData {
   }
   updateNodeData() {}
   deleteNodeData() {}
+  compareNodeById() {}
+  compareNodeByText() {}
 }
