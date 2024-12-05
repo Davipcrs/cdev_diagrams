@@ -14,7 +14,7 @@ Widget nodeContainer({
   return Stack(
     children: [
       DraggableContainer(
-          initPosition: const Offset(100, 100),
+          initPosition: data.position,
           onMove: (val) {
             data.position = val;
           },

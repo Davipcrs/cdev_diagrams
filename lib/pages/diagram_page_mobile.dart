@@ -3,14 +3,14 @@ import 'package:cdev_diagrams/widgets/option_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomepageMobile extends ConsumerStatefulWidget {
-  const HomepageMobile({super.key});
+class DiagramPageMobile extends ConsumerStatefulWidget {
+  const DiagramPageMobile({super.key});
 
   @override
-  ConsumerState<HomepageMobile> createState() => _HomepageMobileState();
+  ConsumerState<DiagramPageMobile> createState() => _DiagramPageMobileState();
 }
 
-class _HomepageMobileState extends ConsumerState<HomepageMobile> {
+class _DiagramPageMobileState extends ConsumerState<DiagramPageMobile> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   dynamic widgetList;

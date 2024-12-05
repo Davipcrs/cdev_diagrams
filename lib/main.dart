@@ -1,7 +1,4 @@
-import 'package:cdev_diagrams/controller/node_controller.dart';
-import 'package:cdev_diagrams/models/node_data.dart';
-import 'package:cdev_diagrams/pages/responsive.dart';
-import 'package:cdev_diagrams/widgets/node_container.dart';
+import 'package:cdev_diagrams/pages/responsive_diagram_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,6 +18,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   void initState() {
     super.initState();
 
+    /*
     ref.read(nodeList.notifier).state.add(nodeContainer(
         lockVariable: false,
         data: NodeData(
@@ -39,6 +37,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             nodeId: 2, title: "adawd", color: Colors.blue, desc: "das"),
         ref: ref,
         context: context));
+    */
   }
 
   // This widget is the root of your application.
@@ -50,7 +49,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Responsive(),
+      home: const ResponsiveDiagramPage(),
     );
   }
 }

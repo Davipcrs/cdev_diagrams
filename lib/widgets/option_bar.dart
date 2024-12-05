@@ -20,6 +20,8 @@ class OptionBar extends ConsumerStatefulWidget {
 class _OptionBarState extends ConsumerState<OptionBar> {
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
+  TextEditingController xController = TextEditingController();
+  TextEditingController yController = TextEditingController();
   Color auxiliarColor = Colors.blue;
   NodeData data = NodeData();
 
@@ -35,6 +37,8 @@ class _OptionBarState extends ConsumerState<OptionBar> {
     if (data.color != null) {
       auxiliarColor = data.color!;
     }
+    xController.text = data.position.dx.toString();
+    yController.text = data.position.dy.toString();
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300, minWidth: 300),
       child: PhysicalModel(
@@ -50,18 +54,17 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                 children: [
                   OutlinedButton(
                     onPressed: () {
-                      int counter = ref.watch(nodeCounterProvider);
-                      data.title = titleController.text;
-                      data.desc = descController.text;
-                      data.color = auxiliarColor;
-                      data.position = Offset.zero;
-                      data.nodeId = counter + 1;
-                      ref.read(nodeCounterProvider.notifier).state =
-                          counter + 1;
+                      NodeData newData = NodeData();
+                      newData.title = titleController.text;
+                      newData.desc = descController.text;
+                      newData.color = auxiliarColor;
+                      newData.position = Offset(double.parse(xController.text),
+                          double.parse(yController.text));
+                      newData = newData.createNodeData(ref);
                       ref.read(nodeList.notifier).state.add(
                             nodeContainer(
                                 lockVariable: ref.watch(nodeGlobalLockProvider),
-                                data: data,
+                                data: newData,
                                 ref: ref,
                                 context: context),
                           );
@@ -112,6 +115,23 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                     ),
                   ),
                 ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 125, maxHeight: 40),
+                    child: TextField(
+                      controller: xController,
+                    ),
+                  ),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 125, maxHeight: 40),
+                    child: TextField(
+                      controller: yController,
+                    ),
+                  )
+                ],
               ),
               Row(
                 children: [

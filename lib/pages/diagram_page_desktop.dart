@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
 
-class HomepageDesktop extends ConsumerStatefulWidget {
-  const HomepageDesktop({super.key});
+class DiagramPageDesktop extends ConsumerStatefulWidget {
+  const DiagramPageDesktop({super.key});
 
   @override
-  ConsumerState<HomepageDesktop> createState() => _HomepageDesktopState();
+  ConsumerState<DiagramPageDesktop> createState() => _DiagramPageDesktopState();
 }
 
-class _HomepageDesktopState extends ConsumerState<HomepageDesktop> {
+class _DiagramPageDesktopState extends ConsumerState<DiagramPageDesktop> {
   dynamic widgetList;
 
   @override

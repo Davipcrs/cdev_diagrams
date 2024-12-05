@@ -34,6 +34,7 @@ dependencies:
   widgets_to_image: ^1.0.0
   file_picker: ^8.1.4
   flutter_riverpod: ^2.6.1
+  go_router: ^14.6.2
 
 
 
