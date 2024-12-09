@@ -1,5 +1,5 @@
 import 'package:cdev_diagrams/controller/node_connections_controller.dart';
-import 'package:cdev_diagrams/controller/selected_node_controller.dart';
+import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,8 +40,6 @@ Widget nodeContainer({
               // Compare the nodeConnectionsStart and End to draw the line.
             },
             child: Container(
-              width: 100,
-              height: 100,
               color: data.color!,
               child: Column(
                 children: [

@@ -9,6 +9,8 @@ class NodeConnections {
   NodeConnections({this.line, this.connectionId});
   Tuple2? line;
   int? connectionId;
+  int? originId;
+  int? destinationId;
 
   // From JSON
   factory NodeConnections.fromJson(Map<String, dynamic> json) {

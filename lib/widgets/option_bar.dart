@@ -3,7 +3,6 @@
 
 import 'package:cdev_diagrams/controller/node_connections_controller.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
-import 'package:cdev_diagrams/controller/selected_node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/node_container.dart';
 import 'package:flutter/material.dart';
