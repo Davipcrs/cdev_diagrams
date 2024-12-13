@@ -1,3 +1,4 @@
+import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/node_connections_controller.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
@@ -17,10 +18,13 @@ Widget nodeContainer({
           initPosition: data.position,
           onMove: (val) {
             data.position = val;
+            ref
+                .read(connectionsProvider.notifier)
+                .updateConnectionsUsingNode(nodeId: data.nodeId);
           },
-          // Handle out of bounds
           childWidget: InkWell(
             onTap: () {
+              /*
               if (ref.watch(nodeConnectionsIsActive)) {
                 // DESIGN THIS BETTER!!!
                 // Create a fuction that is responsible for this...
@@ -33,11 +37,20 @@ Widget nodeContainer({
                 return;
               }
               // Read Offset of the widget and pass to the Data variable.
+              
               ref.read(selectNodeProvider.notifier).state = data.nodeId!;
               ref.read(selectNodeDataProvider.notifier).state = data;
               ref.read(isNodeSelected.notifier).state = true;
 
               // Compare the nodeConnectionsStart and End to draw the line.
+              */
+              print("toque");
+              print(data.nodeId);
+              ref
+                  .read(nodeIdSelected.notifier)
+                  .update((state) => state = data.nodeId!);
+
+              print(data.toJson());
             },
             child: Container(
               color: data.color!,

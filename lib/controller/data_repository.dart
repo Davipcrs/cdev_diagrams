@@ -42,15 +42,15 @@ class NodeConnectionsManager extends Notifier<List<NodeConnections>> {
 
   void updateConnectionsUsingNode({required nodeId}) {
     List<NodeData> nodes = ref.watch(nodesProvider);
-//    int index = nodes.indexWhere((element) => element.nodeId == nodeId);
+    int index = nodes.indexWhere((element) => element.nodeId == nodeId);
     for (final NodeConnections conn in state) {
-      if (conn.originId == nodeId || conn.destinationId == nodeId) {
-        //conn.line = Tuple2(, item2);
+      if (conn.originId == nodeId) {
+        conn.line = Tuple2(nodes[index].position, conn.line!.item2);
+      } else if (conn.destinationId == nodeId) {
+        conn.line = Tuple2(conn.line!.item1, nodes[index].position);
       }
     }
   }
-
-  void updateConnection({required connId}) {}
 
   void removeConnection({required connId}) {
     state = [
@@ -63,5 +63,12 @@ class NodeConnectionsManager extends Notifier<List<NodeConnections>> {
 final nodesProvider = NotifierProvider<NodeModelManager, List<NodeData>>(
   () {
     return NodeModelManager();
+  },
+);
+
+final connectionsProvider =
+    NotifierProvider<NodeConnectionsManager, List<NodeConnections>>(
+  () {
+    return NodeConnectionsManager();
   },
 );

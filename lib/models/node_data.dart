@@ -1,7 +1,4 @@
-import 'package:cdev_diagrams/controller/application_data_controller.dart';
-import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NodeData {
   NodeData(
@@ -50,19 +47,4 @@ class NodeData {
     position = newPos;
     return this;
   }
-
-  createNodeData(WidgetRef ref) {
-    nodeId =
-        ref.read(nodeCounterProvider.notifier).update((state) => state + 1);
-    ref.read(nodeDataObjectList.notifier).state.add(this);
-    return this;
-  }
-
-  updateNodeData(WidgetRef ref) {
-    return this;
-  }
-
-  deleteNodeData() {}
-  compareNodeById() {}
-  compareNodeByText() {}
 }

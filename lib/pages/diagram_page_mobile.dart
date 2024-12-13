@@ -18,12 +18,12 @@ class _DiagramPageMobileState extends ConsumerState<DiagramPageMobile> {
   @override
   didChangeDependencies() {
     super.didChangeDependencies();
-    widgetList = ref.watch(nodeList);
+    //widgetList = ref.watch(nodeList);
   }
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(nodeCounterProvider);
+    //ref.watch(nodeCounterProvider);
     return Scaffold(
       key: _scaffoldKey,
       drawer: const OptionBar(),
