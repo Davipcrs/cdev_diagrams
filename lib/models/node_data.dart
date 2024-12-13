@@ -46,6 +46,11 @@ class NodeData {
     };
   }
 
+  updatePos(Offset newPos) {
+    position = newPos;
+    return this;
+  }
+
   createNodeData(WidgetRef ref) {
     nodeId =
         ref.read(nodeCounterProvider.notifier).update((state) => state + 1);
