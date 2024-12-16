@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 Widget exporter() {
-  return Container();
+  return Dialog();
 }
 
 Widget imagePreview() {
-  return Container();
+  return Dialog();
 }

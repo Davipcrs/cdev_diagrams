@@ -1,5 +1,5 @@
 import 'package:cdev_diagrams/controller/data_repository.dart';
-import 'package:cdev_diagrams/controller/node_connections_controller.dart';
+import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
@@ -44,13 +44,9 @@ Widget nodeContainer({
 
               // Compare the nodeConnectionsStart and End to draw the line.
               */
-              print("toque");
-              print(data.nodeId);
               ref
                   .read(nodeIdSelected.notifier)
                   .update((state) => state = data.nodeId!);
-
-              print(data.toJson());
             },
             child: Container(
               color: data.color!,

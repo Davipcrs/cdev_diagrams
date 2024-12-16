@@ -2,9 +2,10 @@
 // https://chatgpt.com/g/g-cZPwvslfA-flutter/c/6732d832-2d24-800b-b460-ba6b9e4ead7c
 
 import 'package:cdev_diagrams/controller/data_repository.dart';
-import 'package:cdev_diagrams/controller/node_connections_controller.dart';
+import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
+import 'package:cdev_diagrams/widgets/connection_dialog.dart';
 import 'package:cdev_diagrams/widgets/node_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +33,6 @@ class _OptionBarState extends ConsumerState<OptionBar> {
       data = NodeData();
     } else {
       List nodes = ref.watch(nodesProvider);
-      print(nodes);
       for (final NodeData item in nodes) {
         if (item.nodeId == id) {
           data = item;
@@ -43,7 +43,6 @@ class _OptionBarState extends ConsumerState<OptionBar> {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
     setData();
     if (data.title != null) {
       titleController.text = data.title!;
@@ -169,9 +168,21 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                   ),
                 ],
               ),
-              const Row(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Line Mode:"),
+                  OutlinedButton(
+                      onPressed: () {
+                        if (ref.watch(nodeIdSelected) == 0) {
+                          return;
+                        } else {
+                          showAdaptiveDialog(
+                              context: context,
+                              builder: createConnectionDialog);
+                        }
+                      },
+                      child: const Text("Add Node Connection"))
+                  //Text("Line Mode:"),
                   /*
                   Switch.adaptive(
                       value: ref.watch(nodeConnectionsIsActive),
@@ -182,7 +193,8 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                           : null),
                           */
                 ],
-              )
+              ),
+
               // Implement this list view of all widgets (Nodes and Lines)
               //Container(child: ListView.builder(itemBuilder: itemBuilder))
             ],

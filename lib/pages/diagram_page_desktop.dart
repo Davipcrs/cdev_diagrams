@@ -1,5 +1,5 @@
 import 'package:cdev_diagrams/controller/data_repository.dart';
-import 'package:cdev_diagrams/controller/node_connections_controller.dart';
+import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
 import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
@@ -59,7 +59,7 @@ class _DiagramPageDesktopState extends ConsumerState<DiagramPageDesktop> {
                       lineColor: Theme.of(context).colorScheme.onSurface),
                 ),
                 Stack(
-                  children: widgetList ?? [Container()],
+                  children: widgetList,
                 )
               ],
             ),
