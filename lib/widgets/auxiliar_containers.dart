@@ -34,13 +34,20 @@ Widget nodeDataAuxiliarContainer(
 }
 
 Widget nodeConnectionsAuxiliarContainer(
-    BuildContext context, NodeConnections data) {
+    {required BuildContext context, required NodeConnections data}) {
   return Container(
+    decoration:
+        BoxDecoration(color: Theme.of(context).colorScheme.onSurfaceVariant),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Row(children: [Text("Title: "), Text("Position")]),
-        Row(children: [Text("Desc: ")])
+        Row(children: [
+          Text("Connection ID:  ${data.connectionId.toString()}")
+        ]),
+        Row(children: [
+          Text("Origin ID: ${data.originId.toString()}"),
+          Text("End ID: ${data.destinationId.toString()}")
+        ]),
       ],
     ),
   );

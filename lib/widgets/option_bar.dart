@@ -12,6 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
 
+// @DOCSTART
+// ### option_bar.dart (OptionBar)
+// File Responsible to the left Option bar in the application @NL
+// Contains the Definition of the ConsumerStatefulWidget OptionsBar @NL
+// @CBS dart
 class OptionBar extends ConsumerStatefulWidget {
   const OptionBar({super.key});
 
@@ -27,7 +32,13 @@ class _OptionBarState extends ConsumerState<OptionBar> {
   Color auxiliarColor = Colors.blue;
   NodeData data = NodeData();
   int id = 0;
+// @CBE
+// @NL
+// @DOCEND
 
+// @ID This file recieves data from this function: @NL
+// @DOCSTART
+// @CBS dart
   setData() {
     id = ref.watch(nodeIdSelected);
     if (id == 0) {
@@ -41,6 +52,10 @@ class _OptionBarState extends ConsumerState<OptionBar> {
       }
     }
   }
+
+// @CBE
+// @NL
+// @DOCEND
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +71,15 @@ class _OptionBarState extends ConsumerState<OptionBar> {
     }
     xController.text = data.position.dx.toString();
     yController.text = data.position.dy.toString();
+    // @DOCSTART
+    // The Width and Heights of this widget: @NL
+    // @CBS dart
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 300, minWidth: 300),
       child: PhysicalModel(
+        // @CBE
+        // @NL
+        // @DOCEND
         color: Theme.of(context).colorScheme.surface,
         elevation: 8,
         child: Padding(
@@ -285,10 +306,10 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 constraints: const BoxConstraints(
-                    maxWidth: 280,
-                    minWidth: 280,
-                    maxHeight: 400,
-                    minHeight: 200),
+                  maxWidth: 280,
+                  minWidth: 280,
+                  maxHeight: 400,
+                ),
                 child: DefaultTabController(
                   length: 2,
                   child: Column(
@@ -298,7 +319,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                         unselectedLabelColor:
                             Theme.of(context).colorScheme.onSurface,
                         indicatorColor: Theme.of(context).colorScheme.primary,
-                        tabs: [
+                        tabs: const [
                           Tab(text: "Nodes"),
                           Tab(text: "Connections"),
                         ],
@@ -307,19 +328,35 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                         child: TabBarView(
                           children: [
                             Center(
-                                child: listAllNodes(
-                                    context: context,
-                                    dataList: ref.watch(nodesProvider))),
-                            Center(child: listAllConnections()),
+                              child: listAllNodes(
+                                context: context,
+                                dataList: ref.watch(nodesProvider),
+                              ),
+                            ),
+                            Center(
+                              child: listAllConnections(
+                                context: context,
+                                dataList: ref.watch(connectionsProvider),
+                              ),
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-
-                // Implement this list view of all widgets (Nodes and Lines)
-                //Container(child: ListView.builder(itemBuilder: itemBuilder))
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    OutlinedButton(
+                      onPressed: () {},
+                      child: const Text("Export"),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
