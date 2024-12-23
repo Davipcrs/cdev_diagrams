@@ -1,6 +1,5 @@
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
-import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

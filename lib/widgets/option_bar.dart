@@ -3,10 +3,11 @@
 
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
-import 'package:cdev_diagrams/controller/node_controller.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/connection_dialog.dart';
-import 'package:cdev_diagrams/widgets/node_container.dart';
+import 'package:cdev_diagrams/widgets/data_editor.dart';
+import 'package:cdev_diagrams/widgets/list_all_connections.dart';
+import 'package:cdev_diagrams/widgets/list_all_nodes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
@@ -108,10 +109,39 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                   ),
                 ],
               ),
-              TextField(
-                controller: titleController,
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: "Title",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 0.5),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.primary,
+                          width: 0.5),
+                    ),
+                  ),
+                  controller: titleController,
+                ),
               ),
               TextField(
+                decoration: InputDecoration(
+                  labelText: "Desc",
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 0.5),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 0.5),
+                  ),
+                ),
                 controller: descController,
               ),
               Padding(
@@ -147,6 +177,19 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                         const BoxConstraints(maxWidth: 125, maxHeight: 40),
                     child: TextField(
                       controller: xController,
+                      decoration: InputDecoration(
+                        labelText: "Pos: X",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 0.5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 0.5),
+                        ),
+                      ),
                     ),
                   ),
                   ConstrainedBox(
@@ -154,49 +197,130 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                         const BoxConstraints(maxWidth: 125, maxHeight: 40),
                     child: TextField(
                       controller: yController,
+                      decoration: InputDecoration(
+                        labelText: "Pos: Y",
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 0.5),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.primary,
+                              width: 0.5),
+                        ),
+                      ),
                     ),
                   )
                 ],
               ),
-              Row(
-                children: [
-                  const Text("Lock: "),
-                  Switch.adaptive(
-                    value: ref.watch(nodeGlobalLockProvider),
-                    onChanged: (value) =>
-                        ref.read(nodeGlobalLockProvider.notifier).state = value,
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  children: [
+                    const Text("Lock: "),
+                    Switch.adaptive(
+                      value: ref.watch(nodeGlobalLockProvider),
+                      onChanged: (value) => ref
+                          .read(nodeGlobalLockProvider.notifier)
+                          .state = value,
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton(
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  // Add Here the edit dialog
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    OutlinedButton(
+                        onPressed: () {
+                          if (ref.watch(nodeIdSelected) == 0) {
+                            return;
+                          } else {
+                            showAdaptiveDialog(
+                                context: context,
+                                builder: createConnectionDialog);
+                          }
+                        },
+                        child: const Text("Add Node Connection")),
+
+                    //Text("Line Mode:"),
+                    /*
+                    Switch.adaptive(
+                        value: ref.watch(nodeConnectionsIsActive),
+                        onChanged: ref.watch(isNodeSelected)
+                            ? (value) => ref
+                                .read(nodeConnectionsIsActive.notifier)
+                                .state = value
+                            : null),
+                            */
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    OutlinedButton(
                       onPressed: () {
                         if (ref.watch(nodeIdSelected) == 0) {
                           return;
                         } else {
                           showAdaptiveDialog(
                               context: context,
-                              builder: createConnectionDialog);
+                              builder: (BuildContext context) =>
+                                  dataEditor(context, ref));
                         }
                       },
-                      child: const Text("Add Node Connection"))
-                  //Text("Line Mode:"),
-                  /*
-                  Switch.adaptive(
-                      value: ref.watch(nodeConnectionsIsActive),
-                      onChanged: ref.watch(isNodeSelected)
-                          ? (value) => ref
-                              .read(nodeConnectionsIsActive.notifier)
-                              .state = value
-                          : null),
-                          */
-                ],
+                      child: const Text("Edit Node"),
+                    ),
+                  ],
+                ),
               ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                constraints: const BoxConstraints(
+                    maxWidth: 280,
+                    minWidth: 280,
+                    maxHeight: 400,
+                    minHeight: 200),
+                child: DefaultTabController(
+                  length: 2,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        labelColor: Theme.of(context).colorScheme.primary,
+                        unselectedLabelColor:
+                            Theme.of(context).colorScheme.onSurface,
+                        indicatorColor: Theme.of(context).colorScheme.primary,
+                        tabs: [
+                          Tab(text: "Nodes"),
+                          Tab(text: "Connections"),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            Center(
+                                child: listAllNodes(
+                                    context: context,
+                                    dataList: ref.watch(nodesProvider))),
+                            Center(child: listAllConnections()),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
 
-              // Implement this list view of all widgets (Nodes and Lines)
-              //Container(child: ListView.builder(itemBuilder: itemBuilder))
+                // Implement this list view of all widgets (Nodes and Lines)
+                //Container(child: ListView.builder(itemBuilder: itemBuilder))
+              ),
             ],
           ),
         ),
