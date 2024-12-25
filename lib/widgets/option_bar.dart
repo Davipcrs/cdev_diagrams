@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
 
 // @DOCSTART
-// ### option_bar.dart (OptionBar)
+// ### option_bar.dart (OptionBar) @NL
 // File Responsible to the left Option bar in the application @NL
 // Contains the Definition of the ConsumerStatefulWidget OptionsBar @NL
 // @CBS dart
@@ -95,6 +95,9 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                       NodeData newData = NodeData();
                       newData.nodeId = ref.watch(nodeIdCreationController) + 1;
 
+                      // Test
+                      print(ref.watch(connectionsProvider));
+
                       newData.title = titleController.text;
                       newData.desc = descController.text;
                       newData.color = auxiliarColor;
@@ -104,7 +107,10 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                       ref
                           .read(nodeIdCreationController.notifier)
                           .update((state) => state + 1);
-                      ref.invalidate(nodeIdSelected);
+                      ref
+                          .read(nodeIdSelected.notifier)
+                          .update((state) => state = 0);
+                      print(ref.watch(connectionsProvider));
                       /*
                       ref.read(nodeList.notifier).state.add(
                             nodeContainer(
@@ -262,7 +268,8 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                           } else {
                             showAdaptiveDialog(
                                 context: context,
-                                builder: createConnectionDialog);
+                                builder: (BuildContext context) =>
+                                    createConnectionDialog(context, ref));
                           }
                         },
                         child: const Text("Add Node Connection")),
