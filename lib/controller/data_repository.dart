@@ -41,7 +41,7 @@ class NodeConnectionsManager extends Notifier<List<NodeConnections>> {
   }
 
   void updateConnectionsUsingNode({required nodeId}) {
-    List<NodeData> nodes = ref.watch(nodesProvider);
+    List<NodeData> nodes = ref.read(nodesProvider);
     int index = nodes.indexWhere((element) => element.nodeId == nodeId);
     for (final NodeConnections conn in state) {
       if (conn.originId == nodeId) {
