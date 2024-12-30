@@ -3,7 +3,7 @@
 
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
-import 'package:cdev_diagrams/controller/export_to_json_image.dart';
+import 'package:cdev_diagrams/controller/import_to_json.dart';
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/connection_dialog.dart';
@@ -11,6 +11,7 @@ import 'package:cdev_diagrams/widgets/data_editor.dart';
 import 'package:cdev_diagrams/widgets/exporter.dart';
 import 'package:cdev_diagrams/widgets/list_all_connections.dart';
 import 'package:cdev_diagrams/widgets/list_all_nodes.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
@@ -387,7 +388,18 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                       child: const Text("Export"),
                     ),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        FilePickerResult? result = await FilePicker.platform
+                            .pickFiles(
+                                type: FileType.custom,
+                                allowedExtensions: ['json'],
+                                allowMultiple: false);
+
+                        if (result != null) {
+                          final bytes = result.files.first.bytes;
+                          importToJson(bytes!);
+                        }
+                      },
                       child: const Text("Load"),
                     ),
                   ],
