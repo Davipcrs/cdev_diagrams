@@ -3,7 +3,7 @@
 
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
-import 'package:cdev_diagrams/controller/import_to_json.dart';
+import 'package:cdev_diagrams/controller/import_from_json.dart';
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/connection_dialog.dart';
@@ -397,7 +397,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
 
                         if (result != null) {
                           final bytes = result.files.first.bytes;
-                          importToJson(bytes!);
+                          importFromJson(bytes!, ref);
                         }
                       },
                       child: const Text("Load"),
