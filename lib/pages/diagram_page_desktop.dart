@@ -1,5 +1,6 @@
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
+import 'package:cdev_diagrams/controller/export_to_json_image.dart';
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/node_container.dart';
@@ -7,6 +8,7 @@ import 'package:cdev_diagrams/widgets/option_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 class DiagramPageDesktop extends ConsumerStatefulWidget {
   const DiagramPageDesktop({super.key});
@@ -48,19 +50,22 @@ class _DiagramPageDesktopState extends ConsumerState<DiagramPageDesktop> {
           const OptionBar(),
           SizedBox(
             width: MediaQuery.sizeOf(context).width - 300,
-            child: Stack(
-              children: [
-                CustomPaint(
-                  size: Size(MediaQuery.sizeOf(context).width - 300,
-                      MediaQuery.sizeOf(context).height),
-                  painter: LineConnectorPainter(
-                      lines: linesAuxiliar,
-                      lineColor: Theme.of(context).colorScheme.onSurface),
-                ),
-                Stack(
-                  children: widgetList,
-                )
-              ],
+            child: WidgetsToImage(
+              controller: ref.read(widgetToImageControllerProvider),
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: Size(MediaQuery.sizeOf(context).width - 300,
+                        MediaQuery.sizeOf(context).height),
+                    painter: LineConnectorPainter(
+                        lines: linesAuxiliar,
+                        lineColor: Theme.of(context).colorScheme.onSurface),
+                  ),
+                  Stack(
+                    children: widgetList,
+                  )
+                ],
+              ),
             ),
           ),
         ],

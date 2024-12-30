@@ -1,9 +1,12 @@
+import 'dart:js_interop';
+
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:web/web.dart';
+import 'package:web/web.dart' as web;
 import 'package:flutter/foundation.dart';
+import 'package:widgets_to_image/widgets_to_image.dart';
 
 void exportToJson(WidgetRef ref) {
   List nodeConnections = ref.read(connectionsProvider);
@@ -19,17 +22,21 @@ void exportToJson(WidgetRef ref) {
   for (NodeConnections conn in nodeConnections) {
     json['connections'][conn.connectionId] = conn.toJson();
   }
-  print(json);
 }
 
-void myPluginDownload(String url) {
+final widgetToImageControllerProvider =
+    StateProvider((_) => WidgetsToImageController());
+
+void myPluginDownload(Uint8List byteData) {
   // https://stackoverflow.com/questions/59783344/flutter-web-download-option
   // when building in release the file structure changes ...
-  if (kReleaseMode) {
-    url = "assets/$url";
-  }
-  HTMLAnchorElement()
+  final blob = web.Blob([byteData as JSUint8Array] as JSArray<web.BlobPart>);
+  final url = web.URL.createObjectURL(blob);
+  final anchor = web.HTMLAnchorElement()
     ..href = url
-    ..download = url
-    ..click();
+    ..target = 'blank'
+    ..download = 'png.png';
+  anchor.click();
+  web.URL.revokeObjectURL(url);
+  // print(encoded);
 }
