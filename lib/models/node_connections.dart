@@ -12,7 +12,9 @@ class NodeConnections {
   // From JSON
   factory NodeConnections.fromJson(Map<String, dynamic> json) {
     return NodeConnections(
-        line: json['line'] as Tuple2<Offset, Offset>?,
+        line: json['line'] != null
+            ? Tuple2(json['line']['start'], json['line']['end'])
+            : Tuple2(Offset.zero, Offset.zero),
         connectionId: json['connectionId'] as int?,
         originId: json['originId'] as int?,
         destinationId: json['destinationId'] as int?);
@@ -21,7 +23,7 @@ class NodeConnections {
   // To JSON
   Map<String, dynamic> toJson() {
     return {
-      'line': line,
+      'line': {'start': line?.item1, 'end': line?.item2},
       'connectionId': connectionId,
       'originId': originId,
       'destinationId': destinationId

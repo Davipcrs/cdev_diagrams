@@ -11,21 +11,32 @@ Widget nodeDataAuxiliarContainer(
       children: [
         Row(
           children: [
+            Text("ID: ${data.nodeId.toString()}"),
             Text(
-              "Id: ${data.nodeId.toString()}",
-              style: TextStyle(),
+                "X: ${data.position.dx.toString()} Y: ${data.position.dx.toString()}",
+                style: TextStyle())
+          ],
+        ),
+        Row(
+          children: [
+            SizedBox(
+              width: 200,
+              child: Text(
+                "TITLE: ${data.title}",
+                style: TextStyle(),
+              ),
             ),
-            Text("Position: ${data.position.toString()}", style: TextStyle())
           ],
         ),
         Row(
           children: [
-            Text("Title: ${data.title}", style: TextStyle()),
-          ],
-        ),
-        Row(
-          children: [
-            Text("Desc: ${data.desc}", style: TextStyle()),
+            SizedBox(
+              width: 200,
+              child: Text(
+                "DESC: ${data.desc}",
+                style: TextStyle(),
+              ),
+            ),
           ],
         ),
       ],

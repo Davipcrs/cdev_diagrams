@@ -51,12 +51,18 @@ Widget nodeContainer({
               color: data.color!,
               child: Column(
                 children: [
-                  Text(
-                    data.title!,
-                    style: const TextStyle(fontSize: 16),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.1,
+                    child: Text(
+                      data.title!,
+                      style: const TextStyle(fontSize: 16),
+                    ),
                   ),
                   const Divider(),
-                  Text(data.desc!),
+                  SizedBox(
+                    width: MediaQuery.sizeOf(context).width * 0.1,
+                    child: Text(data.desc!),
+                  ),
                 ],
               ),
             ),

@@ -3,6 +3,8 @@
 
 import 'package:cdev_diagrams/controller/data_repository.dart';
 import 'package:cdev_diagrams/controller/data_repository_auxiliar.dart';
+import 'package:cdev_diagrams/controller/export_to_json.dart';
+import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:cdev_diagrams/widgets/connection_dialog.dart';
 import 'package:cdev_diagrams/widgets/data_editor.dart';
@@ -95,9 +97,6 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                       NodeData newData = NodeData();
                       newData.nodeId = ref.watch(nodeIdCreationController) + 1;
 
-                      // Test
-                      print(ref.watch(connectionsProvider));
-
                       newData.title = titleController.text;
                       newData.desc = descController.text;
                       newData.color = auxiliarColor;
@@ -110,7 +109,6 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                       ref
                           .read(nodeIdSelected.notifier)
                           .update((state) => state = 0);
-                      print(ref.watch(connectionsProvider));
                       /*
                       ref.read(nodeList.notifier).state.add(
                             nodeContainer(
@@ -308,6 +306,24 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    OutlinedButton(
+                      onPressed: () {
+                        ref.read(connectionsProvider.notifier).addConnection(
+                            connection: NodeConnections(connectionId: -1));
+                        ref
+                            .read(connectionsProvider.notifier)
+                            .removeConnection(connId: -1);
+                      },
+                      child: const Text("Refesh Connections"),
+                    ),
+                  ],
+                ),
+              ),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
@@ -356,11 +372,17 @@ class _OptionBarState extends ConsumerState<OptionBar> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        exportToJson(ref);
+                      },
                       child: const Text("Export"),
+                    ),
+                    OutlinedButton(
+                      onPressed: () {},
+                      child: const Text("Load"),
                     ),
                   ],
                 ),
