@@ -13,7 +13,7 @@ Widget nodeDataAuxiliarContainer(
           children: [
             Text("ID: ${data.nodeId.toString()}"),
             Text(
-                "X: ${data.position.dx.toString()} Y: ${data.position.dx.toString()}",
+                "X: ${data.position.dx.toString()} Y: ${data.position.dy.toString()}",
                 style: TextStyle())
           ],
         ),

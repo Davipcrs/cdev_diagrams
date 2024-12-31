@@ -356,12 +356,14 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                               child: listAllNodes(
                                 context: context,
                                 dataList: ref.watch(nodesProvider),
+                                ref: ref,
                               ),
                             ),
                             Center(
                               child: listAllConnections(
                                 context: context,
                                 dataList: ref.watch(connectionsProvider),
+                                ref: ref,
                               ),
                             ),
                           ],
