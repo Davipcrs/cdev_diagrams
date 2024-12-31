@@ -6,6 +6,16 @@ import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
 
+// @DOCSTART
+// ### data_repository.dart (ModelManagers) @NL
+// File Responsible to hold the Providers that save the data of the application @NL
+// Contains the Definition of the: @NL
+// - NodeModelManager @NL
+// - NodeConnectionManager @NL
+// - nodesProvider (Instance of NodeModelManger) @NL
+// - connectionsProvider (Instace of NodeConnectionsManager) @NL
+// @CBS dart
+
 class NodeModelManager extends Notifier<List<NodeData>> {
   @override
   build() => [];
@@ -60,6 +70,9 @@ class NodeConnectionsManager extends Notifier<List<NodeConnections>> {
   }
 }
 
+// @CBE
+// @NL
+// @DOCEND
 final nodesProvider = NotifierProvider<NodeModelManager, List<NodeData>>(
   () {
     return NodeModelManager();
