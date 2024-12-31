@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mini_utils: ^0.0.6-r1
+  mini_utils: ^0.0.6-r2
   widgets_to_image: ^1.0.0
   file_picker: ^8.1.4
   flutter_riverpod: ^2.6.1

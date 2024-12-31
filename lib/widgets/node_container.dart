@@ -55,13 +55,21 @@ Widget nodeContainer({
                     width: MediaQuery.sizeOf(context).width * 0.1,
                     child: Text(
                       data.title!,
-                      style: const TextStyle(fontSize: 16),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: colorInverter(data.color!),
+                      ),
                     ),
                   ),
                   const Divider(),
                   SizedBox(
                     width: MediaQuery.sizeOf(context).width * 0.1,
-                    child: Text(data.desc!),
+                    child: Text(
+                      data.desc!,
+                      style: TextStyle(
+                        color: colorInverter(data.color!),
+                      ),
+                    ),
                   ),
                 ],
               ),

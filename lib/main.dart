@@ -1,6 +1,7 @@
 import 'package:cdev_diagrams/pages/responsive_diagram_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mini_utils/mini_utils.dart';
 
 void main() {
   runApp(
@@ -22,10 +23,9 @@ class _MyAppState extends ConsumerState<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: cdevSuiteLightTheme,
+      darkTheme: cdevSuiteDarkTheme,
+      themeMode: ThemeMode.dark,
       home: const ResponsiveDiagramPage(),
     );
   }

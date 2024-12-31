@@ -321,7 +321,7 @@ class _OptionBarState extends ConsumerState<OptionBar> {
                             .read(connectionsProvider.notifier)
                             .removeConnection(connId: -1);
                       },
-                      child: const Text("Refesh Connections"),
+                      child: const Text("Refresh Connections"),
                     ),
                   ],
                 ),

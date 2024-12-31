@@ -23,11 +23,12 @@ class _DiagramPageDesktopState extends ConsumerState<DiagramPageDesktop> {
   @override
   Widget build(BuildContext context) {
     List<NodeConnections> connectionsAuxiliar = ref.watch(connectionsProvider);
+    List<NodeData> nodes = ref.watch(nodesProvider);
     List<Tuple2<Offset, Offset>> linesAuxiliar = [];
     for (final item in connectionsAuxiliar) {
       linesAuxiliar.add(item.line as Tuple2<Offset, Offset>);
     }
-    List<NodeData> nodes = ref.watch(nodesProvider);
+
     if (widgetList.isNotEmpty) {
       widgetList = [];
     }

@@ -180,7 +180,7 @@ Widget dataEditor(BuildContext context, WidgetRef ref) {
                           ref
                               .read(nodesProvider.notifier)
                               .addNode(node: newData);
-                          Navigator.pop(context);
+                          //Navigator.pop(context);
                         },
                         child: Text("Confirm Edit"),
                       ),

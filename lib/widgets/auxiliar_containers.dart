@@ -1,6 +1,7 @@
 import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter/material.dart';
+import 'package:mini_utils/mini_utils.dart';
 
 Widget nodeDataAuxiliarContainer(
     {required BuildContext context, required NodeData data}) {
@@ -11,10 +12,18 @@ Widget nodeDataAuxiliarContainer(
       children: [
         Row(
           children: [
-            Text("ID: ${data.nodeId.toString()}"),
             Text(
-                "X: ${data.position.dx.toString()} Y: ${data.position.dy.toString()}",
-                style: TextStyle())
+              "ID: ${data.nodeId.toString()}",
+              style: TextStyle(
+                color: colorInverter(data.color!),
+              ),
+            ),
+            Text(
+              "X: ${data.position.dx.toString()} Y: ${data.position.dy.toString()}",
+              style: TextStyle(
+                color: colorInverter(data.color!),
+              ),
+            )
           ],
         ),
         Row(
@@ -23,7 +32,9 @@ Widget nodeDataAuxiliarContainer(
               width: 200,
               child: Text(
                 "TITLE: ${data.title}",
-                style: TextStyle(),
+                style: TextStyle(
+                  color: colorInverter(data.color!),
+                ),
               ),
             ),
           ],
@@ -34,7 +45,9 @@ Widget nodeDataAuxiliarContainer(
               width: 200,
               child: Text(
                 "DESC: ${data.desc}",
-                style: TextStyle(),
+                style: TextStyle(
+                  color: colorInverter(data.color!),
+                ),
               ),
             ),
           ],
