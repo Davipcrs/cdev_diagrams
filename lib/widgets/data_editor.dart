@@ -176,10 +176,7 @@ Widget dataEditor(BuildContext context, WidgetRef ref) {
 
                           ref
                               .read(nodesProvider.notifier)
-                              .removeNode(nodeId: data.nodeId!);
-                          ref
-                              .read(nodesProvider.notifier)
-                              .addNode(node: newData);
+                              .updateNode(updatedNode: newData);
                           //Navigator.pop(context);
                         },
                         child: Text("Confirm Edit"),

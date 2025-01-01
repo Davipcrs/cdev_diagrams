@@ -31,6 +31,13 @@ class NodeModelManager extends Notifier<List<NodeData>> {
     ];
   }
 
+  void updateNode({required NodeData updatedNode}) {
+    state = [
+      for (final NodeData data in state)
+        if (data.nodeId == updatedNode.nodeId) updatedNode else data
+    ];
+  }
+
   void removeNode({required int nodeId}) {
     List auxliarList = [];
     for (final NodeData item in state) {
