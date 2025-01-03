@@ -1,16 +1,9 @@
 # cdev_diagrams
 
-A new Flutter project.
+a cdev_suite web Application for creating Diagrams and mind map like images  
+[see the docs](./docs.md)
 
-## Getting Started
+## Deploying
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+download the zip file in the release and configure in your favorite Web Server.  
+The project was tested in nginx, soon will be nginx basic model configuration files.
