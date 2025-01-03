@@ -7,6 +7,11 @@ import 'package:cdev_diagrams/models/node_connections.dart';
 import 'package:cdev_diagrams/models/node_data.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// @DOCSTART
+// ### import_from_json.dart (import Function) @NL
+// File Responsible to the load option in the application @NL
+// @CBS dart
+
 void importFromJson(Uint8List bytes, WidgetRef ref) {
   String utf8String = utf8.decode(bytes);
   Map<String, dynamic> jsonAsMap = jsonDecode(utf8String);
@@ -30,3 +35,7 @@ void importFromJson(Uint8List bytes, WidgetRef ref) {
     }
   }
 }
+
+// @CBE
+// @NL
+// @DOCEND

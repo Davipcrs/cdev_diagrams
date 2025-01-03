@@ -5,6 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mini_utils/mini_utils.dart';
 
+// @DOCSTART
+// ### node_container.dart (nodeContainer) @NL
+// File Responsible to the nodeContainer (The nodes in the UI) @NL
+// @DOCEND
+
 Widget nodeContainer({
   required lockVariable,
   required NodeData data,

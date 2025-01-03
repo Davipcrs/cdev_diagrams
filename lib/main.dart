@@ -22,7 +22,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'cdev Diagrams',
       theme: cdevSuiteLightTheme,
       darkTheme: cdevSuiteDarkTheme,
       themeMode: ThemeMode.dark,

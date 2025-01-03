@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+// @DOCSTART
+// ### node_data.dart (NodeData) @NL
+// ##### This is a Model File @NL
+// File Responsible to the NodeData (Title, desc...) in the application @NL
+// @CBS dart
 class NodeData {
   NodeData(
       {this.nodeId,
@@ -12,6 +17,10 @@ class NodeData {
   Color? color;
   String? desc;
   Offset position;
+
+// @CBE
+// @NL
+// @DOCEND
 
   // From JSON
   factory NodeData.fromJson(Map<String, dynamic> json) {
