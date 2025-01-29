@@ -19,3 +19,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+
+---
+
+## Third-Party Licenses
+
+### mini_utils (Version: ^0.0.6-r2)
+Licensed under the MIT License.
+See the package's license at: https://pub.dev/packages/mini_utils/license
+
+### widgets_to_image (Version: ^1.0.0)
+Licensed under the MIT License.
+See the package's license at: https://pub.dev/packages/widgets_to_image/license
+
+### file_picker (Version: ^8.1.4)
+Licensed under the MIT License.
+See the package's license at: https://pub.dev/packages/file_picker/license
+
+### flutter_riverpod (Version: ^2.6.1)
+Licensed under the MIT License.
+See the package's license at: https://pub.dev/packages/flutter_riverpod/license
